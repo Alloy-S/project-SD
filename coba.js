@@ -114,7 +114,7 @@ class GraphMatrix {
 
 
 }
-let V = 4;
+let V = 8;
 function minDistance(dist, sptSet) {
 
     // Initialize min value
@@ -133,11 +133,11 @@ function minDistance(dist, sptSet) {
 // A utility function to print
 // the constructed distance array
 function printSolution(dist, path, src, dest) {
-    // document.write("Vertex \t\t Distance from Source<br>");
-    // for (let i = 0; i < V; i++) {
-    //     document.write(i + " \t\t " +
-    //         dist[i] + "<br>");
-    // }
+    document.write("Vertex \t\t Distance from Source<br>");
+    for (let i = 0; i < V; i++) {
+        document.write(i + " \t\t " +
+            dist[i] + "<br>");
+    }
 
     for (let i = 0; i < V; i++) {
         if (i == dest) {
@@ -183,7 +183,7 @@ function dijkstra(graph, src) {
 
     path[src] = -1
 
-    
+
     // Distance of source vertex
     // from itself is always 0
     dist[src] = 0;
@@ -225,10 +225,12 @@ function dijkstra(graph, src) {
 
     for (let i = 0; i < dist.length; i++) {
         // console.log(i, end.includes(i));
-        if (dist[i] < min && end.includes(i)) {
+        if (i != src) {
+            if (dist[i] < min && end.includes(i)) {
 
-            min = dist[i];
-            index = i;
+                min = dist[i];
+                index = i;
+            }
         }
         // const element = hasil[i];
     }
@@ -242,12 +244,16 @@ function dijkstra(graph, src) {
 
 
 let graph = new GraphMatrix();
-let end = [ 2]
+let end = [1, 2, 3, 4, 5, 6, 7]
 graph.matrix = [
-    [0, 1, 0, 1],
-    [1, 0, 1, 0],
-    [0, 1, 0, 1],
-    [1, 0, 0, 0]
+    [0, 12, 0, 0, 0, 9, 0, 0],
+    [12, 0, 0, 0, 4, 0, 1, 0],
+    [0, 0, 0, 5, 3, 0, 11, 1],
+    [0, 0, 5, 0, 10, 0, 2, 0],
+    [0, 4, 3, 10, 0, 2, 5, 3],
+    [9, 0, 0, 0, 2, 0, 0, 0],
+    [0, 1, 11, 2, 5, 0, 0, 0],
+    [0, 0, 1, 0, 3, 0, 0, 0]
 ]
 // graph.add_vertex();
 // graph.add_vertex();
@@ -260,6 +266,6 @@ graph.matrix = [
 
 
 
-let hasil = dijkstra(graph.matrix, 0);
+let hasil = dijkstra(graph.matrix, 5);
 
 console.log(hasil);
