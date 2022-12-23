@@ -13,7 +13,7 @@ class GraphMatrix {
 
         this.matrix.append(function () {
             var _pj_a = [],
-                _pj_b = range(this.count + 1);
+                _pj_b = this.count + 1;
 
             for (var _pj_c = 0, _pj_d = _pj_b.length; _pj_c < _pj_d; _pj_c += 1) {
                 var _ = _pj_b[_pj_c];
@@ -116,4 +116,14 @@ class GraphMatrix {
 
 
 
-let graph = GraphMatrix();
+let graph = new GraphMatrix();
+graph.add_vertex();
+graph.add_vertex();
+graph.add_vertex();
+graph.add_vertex();
+graph.add_edge(0, 1);
+graph.add_edge(1, 2);
+graph.add_edge(2, 3);
+graph.add_edge(1, 3);
+
+graph.print_adjacency_matrix();
