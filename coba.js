@@ -47,6 +47,71 @@ class GraphMatrix {
         }
     }
 
+    printSolution(dist, path, src, end) {
+        var des;
+        end = this.vertices[end];
+
+        for (var node = 0, _pj_a = this.count; node < _pj_a; node += 1) {
+            if (node === end) {
+                des = list(this.vertices.keys())[list(this.vertices.values()).index(node)];
+                console.log("distance to", des, ":", dist[node]);
+                console.log("path :");
+                this.printPath(node, path);
+                console.log();
+            }
+        }
+    }
+
+    printPath(current, path) {
+        var vertex;
+
+        if (current === -1) {
+            return;
+        }
+
+        this.printPath(path[current], path);
+        vertex = list(this.vertices.keys())[list(this.vertices.values()).index(current)];
+        console.log(vertex);
+    }
+
+    minDistance(dist, explore) {
+        var min, min_index;
+        min = sys.maxsize;
+
+        for (var u = 0, _pj_a = this.count; u < _pj_a; u += 1) {
+            if (dist[u] < min && explore[u] === false) {
+                min = dist[u];
+                min_index = u;
+            }
+        }
+
+        return min_index;
+    }
+
+    dijkstra(src, end) {
+        var distance, explore, path, x;
+        distance = [sys.maxsize] * this.count;
+        distance[this.vertices[src]] = 0;
+        path = [null] * this.count;
+        explore = [false] * this.count;
+        path[this.vertices[src]] = -1;
+
+        for (var cout = 0, _pj_a = this.count; cout < _pj_a; cout += 1) {
+            x = this.minDistance(distance, explore);
+            explore[x] = true;
+
+            for (var y = 0, _pj_b = this.count; y < _pj_b; y += 1) {
+                if (this.matrix[x][y] > 0 && explore[y] === false && distance[y] > distance[x] + this.matrix[x][y]) {
+                    path[y] = x;
+                    distance[y] = distance[x] + this.matrix[x][y];
+                }
+            }
+        }
+
+        this.printSolution(distance, path, src, end);
+    }
+
+
 }
 
 
