@@ -132,12 +132,37 @@ function minDistance(dist, sptSet) {
 
 // A utility function to print
 // the constructed distance array
-function printSolution(dist) {
-    document.write("Vertex \t\t Distance from Source<br>");
+function printSolution(dist, path, src, dest) {
+    // document.write("Vertex \t\t Distance from Source<br>");
+    // for (let i = 0; i < V; i++) {
+    //     document.write(i + " \t\t " +
+    //         dist[i] + "<br>");
+    // }
+
     for (let i = 0; i < V; i++) {
-        document.write(i + " \t\t " +
-            dist[i] + "<br>");
+        if (i == dest) {
+            document.write(
+                "distance to" + dest + ":" + dist[i] + "<br>"
+            );
+            document.write(
+                "path :"
+            );
+
+            printPath(i, path);
+        }
     }
+}
+
+function printPath(current, path) {
+    if (current == -1) {
+        return;
+    }
+    document.write(
+        current + "-->"
+    );
+
+    printPath(path[current], path);
+
 }
 
 // Function that implements Dijkstra's
@@ -147,14 +172,18 @@ function printSolution(dist) {
 function dijkstra(graph, src) {
     let dist = new Array(V);
     let sptSet = new Array(V);
-
+    let path = new Array(V);
     // Initialize all distances as
     // INFINITE and stpSet[] as false
     for (let i = 0; i < V; i++) {
         dist[i] = Number.MAX_VALUE;
         sptSet[i] = false;
+        path[i] = null;
     }
 
+    path[src] = -1
+
+    
     // Distance of source vertex
     // from itself is always 0
     dist[src] = 0;
@@ -184,13 +213,13 @@ function dijkstra(graph, src) {
                 dist[u] != Number.MAX_VALUE &&
                 dist[u] + graph[u][v] < dist[v]) {
                 dist[v] = dist[u] + graph[u][v];
+                path[v] = u;
             }
         }
     }
 
-    // Print the constructed distance array
-    printSolution(dist);
 
+    console.log(path);
     let index = 0;
     var min = Number.MAX_VALUE;
 
@@ -204,6 +233,8 @@ function dijkstra(graph, src) {
         // const element = hasil[i];
     }
 
+    // Print the constructed distance array
+    printSolution(dist, path, src, index);
 
     return index;
 }
@@ -211,7 +242,7 @@ function dijkstra(graph, src) {
 
 
 let graph = new GraphMatrix();
-let end = [1, 2, 3]
+let end = [ 2]
 graph.matrix = [
     [0, 1, 0, 1],
     [1, 0, 1, 0],
