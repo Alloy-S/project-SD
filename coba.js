@@ -1,173 +1,51 @@
-class GraphMatrix {
-    constructor(directed = false) {
-        this.count = 0;
-        this.matrix = [];
-        this.type = directed;
-    }
-
-    add_vertex() {
-        for (var row, _pj_c = 0, _pj_a = this.matrix, _pj_b = _pj_a.length; _pj_c < _pj_b; _pj_c += 1) {
-            row = _pj_a[_pj_c];
-            row.push(0);
-        }
-
-        this.matrix.push(function () {
-            var _pj_a = [],
-                _pj_b = this.count + 1;
-
-            for (var _pj_c = 0, _pj_d = _pj_b.length; _pj_c < _pj_d; _pj_c += 1) {
-                var _ = _pj_b[_pj_c];
-
-                _pj_a.push(0);
-            }
-
-            return _pj_a;
-        }.call(this));
-        this.count += 1;
-    }
-
-    add_edge(v1, v2) {
-        this.matrix[v1][v2] = 1;
-
-        if (this.type === false) {
-            this.matrix[v2][v1] = 1;
-        }
-    }
-
-    print_adjacency_matrix() {
-        for (var vertex, _pj_c = 0, _pj_a = this.matrix, _pj_b = _pj_a.length; _pj_c < _pj_b; _pj_c += 1) {
-            vertex = _pj_a[_pj_c];
-
-            for (var edge, _pj_f = 0, _pj_d = vertex, _pj_e = _pj_d.length; _pj_f < _pj_e; _pj_f += 1) {
-                edge = _pj_d[_pj_f];
-                // console.log(edge);
-                process.stdout.write(edge);
-            }
-
-            console.log();
-        }
-    }
-
-    printSolution(dist, path, src, end) {
-        var des;
-        end = this.vertices[end];
-
-        for (var node = 0, _pj_a = this.count; node < _pj_a; node += 1) {
-            if (node === end) {
-                des = list(this.vertices.keys())[list(this.vertices.values()).index(node)];
-                console.log("distance to", des, ":", dist[node]);
-                console.log("path :");
-                this.printPath(node, path);
-                console.log();
-            }
-        }
-    }
-
-    printPath(current, path) {
-        var vertex;
-
-        if (current === -1) {
-            return;
-        }
-
-        this.printPath(path[current], path);
-        vertex = list(this.vertices.keys())[list(this.vertices.values()).index(current)];
-        console.log(vertex);
-    }
-
-    minDistance(dist, explore) {
-        var min, min_index;
-        min = sys.maxsize;
-
-        for (var u = 0, _pj_a = this.count; u < _pj_a; u += 1) {
-            if (dist[u] < min && explore[u] === false) {
-                min = dist[u];
-                min_index = u;
-            }
-        }
-
-        return min_index;
-    }
-
-    dijkstra(src, end) {
-        var distance, explore, path, x;
-        distance = [Number.MAX_VALUE] * this.count;
-        distance[src] = 0;
-        path = [null] * this.count;
-        explore = [false] * this.count;
-        path[src] = -1;
-
-        for (var cout = 0, _pj_a = this.count; cout < _pj_a; cout += 1) {
-            x = this.minDistance(distance, explore);
-            explore[x] = true;
-
-            for (var y = 0, _pj_b = this.count; y < _pj_b; y += 1) {
-                if (this.matrix[x][y] > 0 && explore[y] === false && distance[y] > distance[x] + this.matrix[x][y]) {
-                    path[y] = x;
-                    distance[y] = distance[x] + this.matrix[x][y];
-                }
-            }
-        }
-
-        this.printSolution(distance, path, src, end);
-    }
-
-
-}
 
 
 function minDistance(dist, sptSet, V) {
+  // Initialize min value
+  let min = Number.MAX_VALUE;
+  let min_index = -1;
 
-    // Initialize min value
-    let min = Number.MAX_VALUE;
-    let min_index = -1;
-
-    for (let v = 0; v < V; v++) {
-        if (sptSet[v] == false && dist[v] <= min) {
-            min = dist[v];
-            min_index = v;
-        }
+  for (let v = 0; v < V; v++) {
+    if (sptSet[v] == false && dist[v] <= min) {
+      min = dist[v];
+      min_index = v;
     }
-    return min_index;
+  }
+  return min_index;
 }
 
 // A utility function to print
 // the constructed distance array
 function printSolution(dist, path, src, dest, V) {
-    document.write("Vertex \t\t Distance from Source<br>");
-    for (let i = 0; i < V; i++) {
-        document.write(i + " \t\t " +
-            dist[i] + "<br>");
-    }
+  document.write("Vertex \t\t Distance from Source<br>");
+  for (let i = 0; i < V; i++) {
+    document.write(i + " \t\t " + dist[i] + "<br>");
+  }
 
-    for (let i = 0; i < V; i++) {
-        // if (i == dest) {
-        document.write(
-            "distance to" + i + ":" + dist[i] + "<br>"
-        );
-        document.write(
-            "path :"
-        );
+  for (let i = 0; i < V; i++) {
+    // if (i == dest) {
+    document.write("distance to " + i + ":" + dist[i] + "<br>");
+    document.write("path: ");
 
-        printPath(i, path);
+    printPath(i, path);
 
-        document.write("<br>")
-        // }
-    }
+    document.write("<br>");
+    // }
+  }
+}
+
+function delEdge(adj, u, v) {
+  adj[u][v] = 0;
+  adj[v][u] = 0;
 }
 
 function printPath(current, path) {
-    if (current == -1) {
-        return;
-    }
+  if (current == -1) {
+    return;
+  }
 
-    printPath(path[current], path);
-    document.write(
-        current + "-->"
-    );
-
-
-
+  printPath(path[current], path);
+  document.write(current + "-->");
 }
 
 // Function that implements Dijkstra's
@@ -175,108 +53,93 @@ function printPath(current, path) {
 // for a graph represented using adjacency
 // matrix representation
 function dijkstra(graph, src) {
-    console.log(graph.length);
-    let V = graph.length;
-    let dist = new Array(V);
-    let sptSet = new Array(V);
-    let path = new Array(V);
-    // Initialize all distances as
-    // INFINITE and stpSet[] as false
-    for (let i = 0; i < V; i++) {
-        dist[i] = Number.MAX_VALUE;
-        sptSet[i] = false;
-        path[i] = null;
+  console.log(graph.length);
+  let V = graph.length;
+  let dist = new Array(V);
+  let sptSet = new Array(V);
+  let path = new Array(V);
+  // Initialize all distances as
+  // INFINITE and stpSet[] as false
+  for (let i = 0; i < V; i++) {
+    dist[i] = Number.MAX_VALUE;
+    sptSet[i] = false;
+    path[i] = null;
+  }
+
+  path[src] = -1;
+
+  // Distance of source vertex
+  // from itself is always 0
+  dist[src] = 0;
+
+  // Find shortest path for all vertices
+  for (let count = 0; count < V - 1; count++) {
+    // Pick the minimum distance vertex
+    // from the set of vertices not yet
+    // processed. u is always equal to
+    // src in first iteration.
+    let u = minDistance(dist, sptSet, V);
+
+    // Mark the picked vertex as processed
+    sptSet[u] = true;
+
+    // Update dist value of the adjacent
+    // vertices of the picked vertex.
+    for (let v = 0; v < V; v++) {
+      // Update dist[v] only if is not in
+      // sptSet, there is an edge from u
+      // to v, and total weight of path
+      // from src to v through u is smaller
+      // than current value of dist[v]
+      if (
+        !sptSet[v] &&
+        graph[u][v] != 0 &&
+        dist[u] != Number.MAX_VALUE &&
+        dist[u] + graph[u][v] < dist[v]
+      ) {
+        dist[v] = dist[u] + graph[u][v];
+        path[v] = u;
+      }
     }
+  }
 
-    path[src] = -1
+  console.log(path);
+  let index = 0;
+  var min = Number.MAX_VALUE;
 
-
-    // Distance of source vertex
-    // from itself is always 0
-    dist[src] = 0;
-
-    // Find shortest path for all vertices
-    for (let count = 0; count < V - 1; count++) {
-
-        // Pick the minimum distance vertex
-        // from the set of vertices not yet
-        // processed. u is always equal to
-        // src in first iteration.
-        let u = minDistance(dist, sptSet, V);
-
-        // Mark the picked vertex as processed
-        sptSet[u] = true;
-
-        // Update dist value of the adjacent
-        // vertices of the picked vertex.
-        for (let v = 0; v < V; v++) {
-
-            // Update dist[v] only if is not in
-            // sptSet, there is an edge from u
-            // to v, and total weight of path
-            // from src to v through u is smaller
-            // than current value of dist[v]
-            if (!sptSet[v] && graph[u][v] != 0 &&
-                dist[u] != Number.MAX_VALUE &&
-                dist[u] + graph[u][v] < dist[v]) {
-                dist[v] = dist[u] + graph[u][v];
-                path[v] = u;
-            }
-        }
+  for (let i = 0; i < dist.length; i++) {
+    // console.log(i, end.includes(i));
+    if (i != src) {
+      if (dist[i] < min && end.includes(i)) {
+        min = dist[i];
+        index = i;
+      }
     }
+  }
 
+  // Print the constructed distance array
+  printSolution(dist, path, src, index, V);
 
-    console.log(path);
-    let index = 0;
-    var min = Number.MAX_VALUE;
-
-    for (let i = 0; i < dist.length; i++) {
-        // console.log(i, end.includes(i));
-        if (i != src) {
-            if (dist[i] < min && end.includes(i)) {
-
-                min = dist[i];
-                index = i;
-            }
-        }
-    }
-
-    // Print the constructed distance array
-    printSolution(dist, path, src, index, V);
-
-    return index;
+  return index;
 }
 
 function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max);
 }
 
+let end = [1, 2, 3, 4, 5, 6, 7];
+let V = 8;
 
-
-let graph = new GraphMatrix();
-let end = [1, 2, 3, 4, 5, 6, 7]
-// let V = 8;
-graph.matrix = [
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
-    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0]
-]
-
-let vertex = 16
-let max = 4
+let vertex = 16;
+let max = 4;
 let matrix = new Array(vertex);
 
 for (let i = 0; i < vertex; i++) {
-    let row = new Array(vertex);
-    for (let j = 0; j < vertex; j++) {
-        row[j] = 0;
-    }
-    matrix[i] = row;
+  let row = new Array(vertex);
+  for (let j = 0; j < vertex; j++) {
+    row[j] = 0;
+  }
+  matrix[i] = row;
 }
 
 let level = 0;
@@ -284,25 +147,24 @@ let level = 0;
 // make edge
 let count = 0;
 for (let i = 0; i < vertex; i++) {
-
-    if (i + 1 < level + max) {
-        console.log(i , level);
-        if (i + 1 < vertex) {
-            matrix[i][i + 1] = 1;
-            matrix[i + 1][i] = 1;
-        }
+  if (i + 1 < level + max) {
+    console.log(i, level);
+    if (i + 1 < vertex) {
+      matrix[i][i + 1] = 1;
+      matrix[i + 1][i] = 1;
     }
+  }
 
-    if (i + 4 < vertex) {
-        matrix[i + 4][i] = 1;
-        matrix[i][i + 4] = 1;
-    }
+  if (i + 4 < vertex) {
+    matrix[i + 4][i] = 1;
+    matrix[i][i + 4] = 1;
+  }
 
-    count++;
-    if (count >= max) {
-        level += max;
-        count = 0;
-    }
+  count++;
+  if (count >= max) {
+    level += max;
+    count = 0;
+  }
 }
 // while (level > 0) {
 //     let row = getRandomInt(vertex);
@@ -314,9 +176,13 @@ for (let i = 0; i < vertex; i++) {
 //     }
 // }
 
-
+console.log("sebelum delete");
 console.log(matrix);
 
+delEdge(matrix, 6,7);
 let hasil = dijkstra(matrix, 5);
 
 // console.log(hasil);
+
+console.log("setelah delete");
+console.log(matrix);
