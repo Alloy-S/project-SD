@@ -19,17 +19,22 @@ function minDistance(dist, sptSet, V) {
     for (let i = 0; i < V; i++) {
       document.write(i + " \t\t " + dist[i] + "<br>");
     }
-  
+
+    let finalPath = [];
+
+    
     for (let i = 0; i < V; i++) {
-      // if (i == dest) {
+      if (i == dest) {
       document.write("distance to " + i + ":" + dist[i] + "<br>");
       document.write("path: ");
   
-      printPath(i, path);
+      printPath(i, path, finalPath);
   
       document.write("<br>");
-      // }
+      }
     }
+
+    return finalPath;
   }
   
   function delEdge(adj, u, v) {
@@ -37,12 +42,13 @@ function minDistance(dist, sptSet, V) {
     adj[v][u] = 0;
   }
   
-  function printPath(current, path) {
+  function printPath(current, path, finalPath) {
     if (current == -1) {
       return;
     }
-  
-    printPath(path[current], path);
+    // console.log(finalPath);
+    printPath(path[current], path, finalPath);
+    finalPath.push(current);
     document.write(current + "-->");
   }
   
@@ -101,7 +107,7 @@ function minDistance(dist, sptSet, V) {
       }
     }
   
-    console.log(path);
+    // console.log(path);
     let index = 0;
     var min = Number.MAX_VALUE;
   
@@ -116,20 +122,17 @@ function minDistance(dist, sptSet, V) {
     }
   
     // Print the constructed distance array
-    printSolution(dist, path, src, index, V);
   
-    return index;
+    return printSolution(dist, path, src, index, V);
   }
   
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
   
-  let end = [1, 2, 3, 4, 5, 6, 7];
-  let V = 8;
-  
-  let vertex = 16;
-  let max = 4;
+  function newGame(max) {
+    let vertex = Math.pow(max, 2);
+//   let max = 4;
   let matrix = new Array(vertex);
   
   for (let i = 0; i < vertex; i++) {
@@ -164,6 +167,14 @@ function minDistance(dist, sptSet, V) {
       count = 0;
     }
   }
+
+  return matrix;
+  }
+
+  let end = [1, 2, 3, 4, 5, 6, 7];
+  let V = 8;
+  
+  
   // while (level > 0) {
   //     let row = getRandomInt(vertex);
   //     let col = getRandomInt(vertex);
@@ -174,13 +185,20 @@ function minDistance(dist, sptSet, V) {
   //     }
   // }
   
-  console.log("sebelum delete");
-  console.log(matrix);
+//   console.log("sebelum delete");
   
-  delEdge(matrix, 6,7);
-  let hasil = dijkstra(matrix, 5);
   
-  // console.log(hasil);
+//   delEdge(matrix, 6,7);
+let matrix = newGame(9)
+let position = 8;
+console.log(matrix);
+let hasil = dijkstra(matrix, position);
+position = hasil[1];  
+
+if (end.includes(position)) {
+    // game over
+}
+  console.log(hasil);
   
   console.log("setelah delete");
   console.log(matrix);
