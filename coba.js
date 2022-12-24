@@ -114,8 +114,9 @@ class GraphMatrix {
 
 
 }
-let V = 8;
-function minDistance(dist, sptSet) {
+
+
+function minDistance(dist, sptSet, V) {
 
     // Initialize min value
     let min = Number.MAX_VALUE;
@@ -132,7 +133,7 @@ function minDistance(dist, sptSet) {
 
 // A utility function to print
 // the constructed distance array
-function printSolution(dist, path, src, dest) {
+function printSolution(dist, path, src, dest, V) {
     document.write("Vertex \t\t Distance from Source<br>");
     for (let i = 0; i < V; i++) {
         document.write(i + " \t\t " +
@@ -140,16 +141,18 @@ function printSolution(dist, path, src, dest) {
     }
 
     for (let i = 0; i < V; i++) {
-        if (i == dest) {
+        // if (i == dest) {
             document.write(
-                "distance to" + dest + ":" + dist[i] + "<br>"
+                "distance to" + i + ":" + dist[i] + "<br>"
             );
             document.write(
                 "path :"
             );
 
             printPath(i, path);
-        }
+
+            document.write("<br>")
+        // }
     }
 }
 
@@ -157,11 +160,13 @@ function printPath(current, path) {
     if (current == -1) {
         return;
     }
+
+    printPath(path[current], path);
     document.write(
         current + "-->"
     );
 
-    printPath(path[current], path);
+    
 
 }
 
@@ -170,6 +175,8 @@ function printPath(current, path) {
 // for a graph represented using adjacency
 // matrix representation
 function dijkstra(graph, src) {
+    console.log(graph.length);
+    let V = graph.length;
     let dist = new Array(V);
     let sptSet = new Array(V);
     let path = new Array(V);
@@ -195,7 +202,7 @@ function dijkstra(graph, src) {
         // from the set of vertices not yet
         // processed. u is always equal to
         // src in first iteration.
-        let u = minDistance(dist, sptSet);
+        let u = minDistance(dist, sptSet, V);
 
         // Mark the picked vertex as processed
         sptSet[u] = true;
@@ -232,11 +239,10 @@ function dijkstra(graph, src) {
                 index = i;
             }
         }
-        // const element = hasil[i];
     }
 
     // Print the constructed distance array
-    printSolution(dist, path, src, index);
+    printSolution(dist, path, src, index, V);
 
     return index;
 }
@@ -245,6 +251,7 @@ function dijkstra(graph, src) {
 
 let graph = new GraphMatrix();
 let end = [1, 2, 3, 4, 5, 6, 7]
+// let V = 8;
 graph.matrix = [
     [0, 12, 0, 0, 0, 9, 0, 0],
     [12, 0, 0, 0, 4, 0, 1, 0],
@@ -255,15 +262,6 @@ graph.matrix = [
     [0, 1, 11, 2, 5, 0, 0, 0],
     [0, 0, 1, 0, 3, 0, 0, 0]
 ]
-// graph.add_vertex();
-// graph.add_vertex();
-// graph.add_vertex();
-// graph.add_vertex();
-// graph.add_edge(0, 1);
-// graph.add_edge(1, 2);
-// graph.add_edge(2, 3);
-// graph.add_edge(1, 3);
-
 
 
 let hasil = dijkstra(graph.matrix, 5);
