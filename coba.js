@@ -285,7 +285,8 @@ let level = 0;
 let count = 0;
 for (let i = 0; i < vertex; i++) {
 
-    if (i + 1 < level+max) {
+    if (i + 1 < level + max) {
+        console.log(i , level);
         if (i + 1 < vertex) {
             matrix[i][i + 1] = 1;
             matrix[i + 1][i] = 1;
@@ -300,6 +301,7 @@ for (let i = 0; i < vertex; i++) {
     count++;
     if (count >= max) {
         level += max;
+        count = 0;
     }
 }
 // while (level > 0) {
@@ -315,6 +317,6 @@ for (let i = 0; i < vertex; i++) {
 
 console.log(matrix);
 
-// let hasil = dijkstra(matrix, 5);
+let hasil = dijkstra(matrix, 5);
 
 // console.log(hasil);
