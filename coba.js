@@ -263,7 +263,6 @@ graph.matrix = [
     [0, 0, 1, 0, 3, 0, 0, 0]
 ]
 
-
 let hasil = dijkstra(graph.matrix, 5);
 
 console.log(hasil);
