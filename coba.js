@@ -142,16 +142,16 @@ function printSolution(dist, path, src, dest, V) {
 
     for (let i = 0; i < V; i++) {
         // if (i == dest) {
-            document.write(
-                "distance to" + i + ":" + dist[i] + "<br>"
-            );
-            document.write(
-                "path :"
-            );
+        document.write(
+            "distance to" + i + ":" + dist[i] + "<br>"
+        );
+        document.write(
+            "path :"
+        );
 
-            printPath(i, path);
+        printPath(i, path);
 
-            document.write("<br>")
+        document.write("<br>")
         // }
     }
 }
@@ -166,7 +166,7 @@ function printPath(current, path) {
         current + "-->"
     );
 
-    
+
 
 }
 
@@ -247,22 +247,74 @@ function dijkstra(graph, src) {
     return index;
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 
 
 let graph = new GraphMatrix();
 let end = [1, 2, 3, 4, 5, 6, 7]
 // let V = 8;
 graph.matrix = [
-    [0, 12, 0, 0, 0, 9, 0, 0],
-    [12, 0, 0, 0, 4, 0, 1, 0],
-    [0, 0, 0, 5, 3, 0, 11, 1],
-    [0, 0, 5, 0, 10, 0, 2, 0],
-    [0, 4, 3, 10, 0, 2, 5, 3],
-    [9, 0, 0, 0, 2, 0, 0, 0],
-    [0, 1, 11, 2, 5, 0, 0, 0],
-    [0, 0, 1, 0, 3, 0, 0, 0]
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0],
+    [0, 1, 0, 0, 1, 0, 0, 0,0,0,0,0,0,0,0,0]
 ]
 
-let hasil = dijkstra(graph.matrix, 5);
+let vertex = 16
+let max = 4
+let matrix = new Array(vertex);
 
-console.log(hasil);
+for (let i = 0; i < vertex; i++) {
+    let row = new Array(vertex);
+    for (let j = 0; j < vertex; j++) {
+        row[j] = 0;
+    }
+    matrix[i] = row;
+}
+
+let level = 0;
+
+// make edge
+let count = 0;
+for (let i = 0; i < vertex; i++) {
+
+    if (i + 1 < level+max) {
+        if (i + 1 < vertex) {
+            matrix[i][i + 1] = 1;
+            matrix[i + 1][i] = 1;
+        }
+    }
+
+    if (i + 4 < vertex) {
+        matrix[i + 4][i] = 1;
+        matrix[i][i + 4] = 1;
+    }
+
+    count++;
+    if (count >= max) {
+        level += max;
+    }
+}
+// while (level > 0) {
+//     let row = getRandomInt(vertex);
+//     let col = getRandomInt(vertex);
+
+//     if (matrix[row][col] != 0) {
+//         matrix[row][col] = 0
+//         level--;
+//     }
+// }
+
+
+console.log(matrix);
+
+// let hasil = dijkstra(matrix, 5);
+
+// console.log(hasil);
