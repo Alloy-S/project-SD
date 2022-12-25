@@ -19,3 +19,7 @@
 button:hover{
   opacity: .2;
 }
+
+button:disabled {
+  border-color: black;
+}
