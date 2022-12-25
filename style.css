@@ -1,0 +1,21 @@
+.square {
+  text-align: center;
+  width: 44vw;
+  height: 44vw;
+  margin: auto;
+}
+
+.green {
+  background-color: #ccff00;
+  height: 11.1%;
+  width: 11.1%;
+  max-height: 100vw;
+  max-width: 100vw;
+  float: left;
+  padding: 0;
+  margin: auto;
+}
+
+button:hover{
+  opacity: .2;
+}
