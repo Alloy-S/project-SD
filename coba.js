@@ -1,7 +1,7 @@
 
 var graphMatrix, position;
 var win = false;
-let end = [1, 2, 3, 4, 5, 6, 7];
+let end = [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 26, 35, 44, 53, 62, 71, 80, 79, 78, 77, 76, 75, ];
 let V = 8;
 
 $('.green').click(function () {
@@ -170,14 +170,17 @@ function newGame(max) {
     if (i + 1 < level + max) {
       console.log(i, level);
       if (i + 1 < vertex) {
+        console.log("edge + 1", i);
         matrix[i][i + 1] = 1;
         matrix[i + 1][i] = 1;
       }
     }
 
-    if (i + 4 < vertex) {
-      matrix[i + 4][i] = 1;
-      matrix[i][i + 4] = 1;
+    if (i + max < vertex) {
+      console.log("edge + 9", i);
+      matrix[i][i + max] = 1;
+      matrix[i + max][i] = 1;
+      
     }
 
     count++;
@@ -208,11 +211,13 @@ function movePlayer() {
   var str;
   for (let i = 0; i < hasil.length; i++) {
     str += hasil[i] + "->";
-    
   }
+  
+  let id = "#" + position;
+  $(id).css('background', '#ccff00');
   $(".path").html(str);
   position = hasil[1];
-  let id = "#" + position;
+  id = "#" + position;
   $(id).css('background', 'red');
 }
 
