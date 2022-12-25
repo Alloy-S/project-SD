@@ -1,7 +1,7 @@
 
 var graphMatrix, position;
 var win = false;
-let end = [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 26, 35, 44, 53, 62, 71, 80, 79, 78, 77, 76, 75, ];
+let end = [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 26, 35, 44, 53, 62, 71, 80, 79, 78, 77, 76, 75, 74, 73, 73, 72, 63, 54, 45, 36, 27, 18, 9];
 let V = 8;
 
 $('.green').click(function () {
@@ -31,9 +31,14 @@ function minDistance(dist, sptSet, V) {
 // the constructed distance array
 function printSolution(dist, path, src, dest, V) {
   // document.write("Vertex \t\t Distance from Source<br>");
-  // for (let i = 0; i < V; i++) {
-  //   document.write(i + " \t\t " + dist[i] + "<br>");
-  // }
+  $("tbody").html("");
+  for (let i = 0; i < V; i++) {
+    // document.write(i + " \t\t " + dist[i] + "<br>");
+    if(end.includes(i)) {
+      $("tbody").append("<tr><td>" + i + "</td><td>" + dist[i] + "</td></tr>")
+
+    }
+  }
 
   let finalPath = [];
 
@@ -180,7 +185,7 @@ function newGame(max) {
       console.log("edge + 9", i);
       matrix[i][i + max] = 1;
       matrix[i + max][i] = 1;
-      
+
     }
 
     count++;
@@ -207,15 +212,16 @@ function newGame(max) {
 
 function movePlayer() {
   let hasil = dijkstra(graphMatrix, position);
-  
+
   var str;
   for (let i = 0; i < hasil.length; i++) {
     str += hasil[i] + "->";
   }
-  
+
   let id = "#" + position;
   $(id).css('background', '#ccff00');
   $(".path").html(str);
+  $(".position").html(position);
   position = hasil[1];
   id = "#" + position;
   $(id).css('background', 'red');
