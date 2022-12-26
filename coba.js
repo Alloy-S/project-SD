@@ -8,8 +8,8 @@ $('.green').click(function () {
   let btn = $(this);
   btn.css('background', '#748404');
   btn.prop("disabled", true);
-  delEdge(graphMatrix, btn.attr("id"))
-  movePlayer()
+  delEdge(graphMatrix, btn.attr("id"));
+  movePlayer();
 });
 
 
@@ -34,7 +34,7 @@ function printSolution(dist, path, src, dest, V) {
   $("tbody").html("");
   for (let i = 0; i < V; i++) {
     // document.write(i + " \t\t " + dist[i] + "<br>");
-    if(end.includes(i)) {
+    if (end.includes(i)) {
       $("tbody").append("<tr><td>" + i + "</td><td>" + dist[i] + "</td></tr>")
 
     }
@@ -59,7 +59,7 @@ function printSolution(dist, path, src, dest, V) {
 
 function delEdge(adj, vertex) {
 
-  for (let i = 0; i < graphMatrix.length; i++) {
+  for (let i = 0; i < adj.length; i++) {
     adj[i][vertex] = 0;
     adj[vertex][i] = 0;
   }
@@ -195,19 +195,37 @@ function newGame(max) {
     }
   }
 
-  while (level > 0) {
-    let row = getRandomInt(vertex);
-    let col = getRandomInt(vertex);
 
-    if (matrix[row][col] != 0) {
-      matrix[row][col] = 0
-      level--;
+  let wall = 10;
+  for (let i = 0; i < wall; i++) {
+    let random = getRandomInt(vertex);
+    // let col = getRandomInt(vertex);
+    if (random != 40) {
+      delEdge(matrix, random);
+      // if (matrix[row][col] != 0) {
+      //   matrix[row][col] = 0
+      //   level--;
+      // }
+      // btn.css('background', '#748404');
+      // btn.prop("disabled", true);
+      console.log(random)
+      id = "#" + random;
+      $(id).css('background', '#748404');
+      $(id).prop("disabled", true);
+    } else {
+      wall++;
     }
+
   }
+
 
   position = 40;
   graphMatrix = matrix;
   // return matrix;
+}
+
+function make_matrix() {
+
 }
 
 function movePlayer() {
@@ -225,6 +243,7 @@ function movePlayer() {
   position = hasil[1];
   id = "#" + position;
   $(id).css('background', 'red');
+  console.log(graphMatrix);
 }
 
 

@@ -1,8 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 25px;
+}
+
 .square {
   text-align: center;
-  width: 44vw;
-  height: 44vw;
-  margin: auto;
+  width: 40vw;
+  height: 40vw;
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .green {
