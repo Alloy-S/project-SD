@@ -50,7 +50,7 @@ function printSolution(dist, path, src, dest, V) {
   if (check == false && count == end.length-1) {
       var delayInMilliseconds = 500; //0.5 second
         setTimeout(function () {
-          newGame(9);
+          newGame(9, 5);
         }, delayInMilliseconds);
       return;
   }
@@ -166,7 +166,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-function newGame(max) {
+function newGame(max, wall) {
   $(".green").css("background", "#ccff00");
   $("#40").css("background", "red");
   $(".green").prop("disabled", false);
@@ -210,7 +210,7 @@ function newGame(max) {
   }
 
   // untuk mengatur jumlah wall
-  var wall = 5;
+  wall = 5;
   for (let i = 0; i < wall; i++) {
     var id_random = Math.floor(Math.random() * 81);
     if (id_random != 40) {
@@ -275,7 +275,7 @@ function movePlayer() {
 
 // let matrix = newGame(9)
 // let position = 8;
-newGame(9);
+newGame(9, 5);
 console.log(graphMatrix);
 // let hasil = dijkstra(graphMatrix, position);
 // position = hasil[1];
