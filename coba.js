@@ -88,51 +88,34 @@ function printPath(current, path, finalPath) {
   // document.write(current + "-->");
 }
 
-// Function that implements Dijkstra's
-// single source shortest path algorithm
-// for a graph represented using adjacency
-// matrix representation
 function dijkstra(graph, src) {
   console.log(graph.length);
   let V = graph.length;
   let dist = new Array(V);
-  let sptSet = new Array(V);
+  let explore = new Array(V);
   let path = new Array(V);
-  // Initialize all distances as
-  // INFINITE and stpSet[] as false
+  
   for (let i = 0; i < V; i++) {
     dist[i] = Number.MAX_VALUE;
-    sptSet[i] = false;
+    explore[i] = false;
     path[i] = null;
   }
 
   path[src] = -1;
-
-  // Distance of source vertex
-  // from itself is always 0
   dist[src] = 0;
 
-  // Find shortest path for all vertices
+  
   for (let count = 0; count < V - 1; count++) {
-    // Pick the minimum distance vertex
-    // from the set of vertices not yet
-    // processed. u is always equal to
-    // src in first iteration.
-    let u = minDistance(dist, sptSet, V);
+    
+    let u = minDistance(dist, explore, V);
 
-    // Mark the picked vertex as processed
-    sptSet[u] = true;
+    
+    explore[u] = true;
 
-    // Update dist value of the adjacent
-    // vertices of the picked vertex.
+  
     for (let v = 0; v < V; v++) {
-      // Update dist[v] only if is not in
-      // sptSet, there is an edge from u
-      // to v, and total weight of path
-      // from src to v through u is smaller
-      // than current value of dist[v]
       if (
-        !sptSet[v] &&
+        !explore[v] &&
         graph[u][v] != 0 &&
         dist[u] != Number.MAX_VALUE &&
         dist[u] + graph[u][v] < dist[v]
@@ -157,14 +140,12 @@ function dijkstra(graph, src) {
     }
   }
 
-  // Print the constructed distance array
-
   return printSolution(dist, path, src, index, V);
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+// function getRandomInt(max) {
+//   return Math.floor(Math.random() * max);
+// }
 
 function newGame(max, wall) {
   $(".green").css("background", "#ccff00");
@@ -210,7 +191,7 @@ function newGame(max, wall) {
   }
 
   // untuk mengatur jumlah wall
-  wall = 5;
+  // wall = 5;
   for (let i = 0; i < wall; i++) {
     var id_random = Math.floor(Math.random() * 81);
     if (id_random != 40) {
@@ -264,7 +245,7 @@ function movePlayer() {
   var delayInMilliseconds = 500; //0.5 second
   if (end.includes(position)) {
     setTimeout(function () {
-      newGame(9);
+      newGame(9, 5);
     }, delayInMilliseconds);
   }
 }
@@ -279,11 +260,3 @@ newGame(9, 5);
 console.log(graphMatrix);
 // let hasil = dijkstra(graphMatrix, position);
 // position = hasil[1];
-
-// if (end.includes(position)) {
-//   // game over
-// }
-// console.log(hasil);
-
-// console.log("setelah delete");
-// console.log(matrix);
