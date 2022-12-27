@@ -30,4 +30,5 @@ button:hover{
 
 button:disabled {
   border-color: black;
+  background-color: aqua;
 }
