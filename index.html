@@ -8,10 +8,15 @@
   <title>Document</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
 </head>
 
 <body>
-  <button id="myBtn">Open Modal</button>
+  <div>
+    <a id="myBtn"><i class="fa-solid fa-bars fa-xl"></i></a>
+  </div>
+  <!-- <button id="myBtn"><i class="fa-solid fa-bars fa-lg"></i></button> -->
   <div class="container">
 
     <div class="info">
@@ -130,10 +135,13 @@
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <button class="btn-difficulty">Easy</button>
-      <button class="btn-difficulty">Medium</button>
-      <button class="btn-difficulty">Hard</button>
-      <button class="btn-quit">Quit</button>
+      <div class="menu">
+
+        <button class="btn-difficulty">Easy</button>
+        <button class="btn-difficulty">Medium</button>
+        <button class="btn-difficulty">Hard</button>
+        <button class="btn-quit">Quit</button>
+      </div>
     </div>
   </div>
 
