@@ -132,7 +132,8 @@
   </div>
 
   <div class="robber" style="margin-top: 30px;"></div>
-  <div id="myModal" class="modal">
+
+  <div id="myModal" class="modal" active="false">
     <div class="modal-content">
       <span class="close">&times;</span>
       <div class="menu">
@@ -155,26 +156,32 @@
       </script> -->
   <script src="coba.js"></script>
   <script>
-    // Get the modal
     var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
+    const keyboard = document.querySelector("body");
 
-    // When the user clicks on the button, open the modal
+    keyboard.addEventListener("keydown", e => {
+      // console.log(e);
+      if (e.keyCode == 27) {
+        if($("#myModal").attr("active") == "false") {
+          modal.style.display = "block";
+          $("#myModal").attr("active", "true");
+        } else {
+          modal.style.display = "none";
+          $("#myModal").attr("active", "false");
+        }
+      }
+    })
+
     btn.onclick = function () {
       modal.style.display = "block";
     }
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
       modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
