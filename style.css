@@ -66,11 +66,14 @@ button:disabled {
     border: 2px solid rgb(1, 57, 10);
 }
 
+.quit{
+  width: 70%;
+}
 .btn-quit{
     font-family: Verdana;
     margin-top: 2em;
     background-color:gray;
-    width: 70%;
+    width: 100%;
     padding: .5rem 0;
     font-size: 1.25rem;
     letter-spacing: .025em;
