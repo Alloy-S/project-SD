@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -25,13 +28,40 @@
                 <h3>Alloysius Steven C14210265</h3>
             </div>
         </div>
+        <div>
+            <input type="range" min="0" max="100" value="10" class="slider" id="myRange">
+            <a id="mute-btn" mute="false"><i class="fa-solid fa-music fa-xl"></i></a>
+        </div>
     </div>
     <div class="robber">
     </div>
 
+    
     <script>
         var audio = document.getElementById("myaudio");
-        audio.volume = 0.05;
+        audio.volume = 0.1;
+        // audio.muted = true;
+        
+        var btnMute = $("#mute-btn");
+        var volume = $("#myRange");
+
+        volume.on("input", function() {
+            // console.log(volume.val());
+            audio.volume = volume.val() / 100;
+        });
+
+        btnMute.click(function() {
+            if (btnMute.attr("mute") == "false") {
+                audio.muted = true;
+                btnMute.attr("mute", "true");
+            } else {
+                audio.muted = false;
+                btnMute.attr("mute", "false"); 
+            }
+            
+        });
+        
+        // audio.volume = 0.1;
     </script>
 </body>
 
@@ -77,7 +107,7 @@
     width: 107.5px;
     height: 140px;
     animation: walk 1s steps(4) infinite, forward 8s linear infinite;
-    margin-top: 260px;
+    margin-top: 200px;
     }
 
     @keyframes walk {
