@@ -30,8 +30,6 @@ function minDistance(dist, sptSet, V) {
   return min_index;
 }
 
-// A utility function to print
-// the constructed distance array
 function printSolution(dist, path, src, dest, V) {
   // document.write("Vertex \t\t Distance from Source<br>");
   $("tbody").html("");
