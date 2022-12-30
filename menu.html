@@ -16,7 +16,7 @@
         <source src="bgm.mp3" type="audio/mpeg">
     </audio>
     <div class="container">
-            <img src="judul.png" alt="judul">
+            <img src="judul.png" alt="judul" class ="center">
         <div class="menu">
             <a href="index.html">
                 <button class="btn-start">Start</button>
@@ -70,15 +70,16 @@
 
 <style>
     body {
-        background-image: url('bank.jpg');
+        background-image: url("bank.jpg");
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size:cover;
     }
 
-    .judul{
-        font-family:'Segoe UI';
-        font-size: 100px;
-        text-align: center;
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
     .btn-start {
         display: flex;
