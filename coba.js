@@ -148,6 +148,10 @@ function dijkstra(graph, src) {
 function newGame(max, wall) {
   $(".green").css("background", "#ccff00");
   $("#40").css("background", "red");
+  document.getElementById('40').style.backgroundImage="url('idle.png')";
+  document.getElementById('40').style.backgroundSize="58px 62px";
+  document.getElementById('40').style.backgroundPosition="center";
+  document.getElementById('40').style.backgroundRepeat= "no-repeat";
   $(".green").prop("disabled", false);
   let vertex = Math.pow(max, 2);
   //   let max = 4;
@@ -239,6 +243,13 @@ function movePlayer() {
   position = hasil[1];
   id = "#" + position;
   $(id).css("background", "red");
+  $(".character").css("position", "absolute");
+  document.getElementById(position).style.backgroundImage="url('idle.png')";
+  document.getElementById(position).style.backgroundSize="58px 62px";
+  document.getElementById(position).style.backgroundPosition="center";
+  document.getElementById(position).style.backgroundRepeat= "no-repeat";
+  // document.getElementById(position).style.textIndent="-999px";
+  // document.getElementById(position).style.fontSize="0";
   console.log(graphMatrix);
   var delayInMilliseconds = 500; //0.5 second
   if (end.includes(position)) {
