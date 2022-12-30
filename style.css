@@ -42,7 +42,8 @@ body{
 }
 
 button:hover{
-  opacity: .2;
+  background-color: #888;
+  opacity: .5;
 }
 
 button:disabled {

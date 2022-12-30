@@ -237,12 +237,25 @@ function movePlayer() {
   }
 
   let id = "#" + position;
+  let from = position;
   $(id).css("background", "#ccff00");
   $(".path").html(str);
   $(".position").html(position);
   position = hasil[1];
+  let next = hasil[1];
   id = "#" + position;
   $(id).css("background", "red");
+  
+  if(from - next == 1) {
+    console.log('animasi kiri');
+  } else if (from - next == -1) {
+    console.log('animasi kanan');
+  } else if (from - next == 9) {
+    console.log('animasi atas');
+  } else if (from - next == -9) {
+    console.log('animasi bawah');
+  }
+
   $(".character").css("position", "absolute");
   document.getElementById(position).style.backgroundImage="url('idle.png')";
   document.getElementById(position).style.backgroundSize="58px 62px";
