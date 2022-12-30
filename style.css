@@ -4,6 +4,16 @@
   margin-top: 25px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-image: url("money.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .square {
   text-align: center;
   width: 40vw;
