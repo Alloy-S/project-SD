@@ -16,8 +16,11 @@
     <audio id="myaudio" controls autoplay loop hidden>
         <source src="bgm.mp3" type="audio/mpeg">
     </audio>
+    <div class="setting">
+        <button id="myBtn" class="btn-setting"><i class="fa-solid fa-gear fa-xl"></i></button>
+    </div>
     <div class="container">
-            <img src="judul.png" alt="judul" class ="center">
+        <img src="judul.png" alt="judul" class="center">
         <div class="menu">
             <a href="index.html">
                 <button class="btn-start">Start</button>
@@ -31,38 +34,82 @@
             </div> -->
         </div>
         <div>
-            <input type="range" min="0" max="100" value="10" class="slider" id="myRange">
-            <a id="mute-btn" mute="false"><i class="fa-solid fa-music fa-xl"></i></a>
+
         </div>
     </div>
     <div class="robber">
     </div>
 
-    
+    <div id="myModal" class="modal" active="false">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="menu">
+                <h2 class="title">Volume Control</h2>
+                <input type="range" min="0" max="100" value="10" class="slider" id="myRange">
+                <button id="mute-btn" mute="false" class="btn-mute">Mute</button>
+                <!-- <a  mute="false"><i class="fa-solid fa-music fa-xl"></i></a> -->
+            </div>
+        </div>
+    </div>
+
+
     <script>
         var audio = document.getElementById("myaudio");
-        audio.volume = 0.1;
+        audio.volume = 0.3;
         // audio.muted = true;
-        
+
         var btnMute = $("#mute-btn");
         var volume = $("#myRange");
 
-        volume.on("input", function() {
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        const keyboard = document.querySelector("body");
+
+        keyboard.addEventListener("keydown", e => {
+            // console.log(e);
+            if (e.keyCode == 27) {
+                if ($("#myModal").attr("active") == "false") {
+                    modal.style.display = "block";
+                    $("#myModal").attr("active", "true");
+                } else {
+                    modal.style.display = "none";
+                    $("#myModal").attr("active", "false");
+                }
+            }
+        })
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        volume.on("input", function () {
             // console.log(volume.val());
             audio.volume = volume.val() / 100;
         });
 
-        btnMute.click(function() {
+        btnMute.click(function () {
             if (btnMute.attr("mute") == "false") {
                 audio.muted = true;
                 btnMute.attr("mute", "true");
+                btnMute.html("Unmuted");
             } else {
                 audio.muted = false;
-                btnMute.attr("mute", "false"); 
+                btnMute.attr("mute", "false");
+                btnMute.html("Mute");
             }
-            
         });
-        
+
         // audio.volume = 0.1;
     </script>
 </body>
@@ -79,7 +126,7 @@
         background-image: url("bank.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        
+
     }
 
     .center {
@@ -88,6 +135,7 @@
         margin-right: auto;
         width: 50%;
     }
+
     .btn-start {
         display: flex;
         justify-content: center;
@@ -103,9 +151,36 @@
         border: 2px solid rgb(1, 57, 10);
     }
 
+    .btn-setting {
+        float: right;
+        font-family: 'Press Start 2P';
+        padding: 12px;
+        margin: 10px;
+        background-color: rgb(237, 220, 136);
+
+    }
+
+    .btn-setting:hover {
+        transform: scale(1.1);
+    }
+
 
     .btn-start:hover {
-        transform: scale(1.3);
+        transform: scale(1.1);
+    }
+
+    .btn-mute {
+        font-family: 'Press Start 2P';
+        margin-top: 20px;
+        background-color: gray;
+        /* width: 30%; */
+        padding: .5rem .5rem;
+        font-size: 1.25rem;
+        letter-spacing: .025em;
+    }
+
+    .title {
+        margin-bottom: 15px;
     }
 
     .credit {
@@ -121,28 +196,95 @@
         margin-bottom: 1.25rem;
     }
 
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        font-family: 'Press Start 2P';
+
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
     .robber {
-    background: url(char_kanan.png);
-    width: 107.5px;
-    height: 140px;
-    animation: walk 0.8s steps(4) infinite, forward 4s linear infinite;
+        background: url(char_kanan.png);
+        width: 107.5px;
+        height: 140px;
+        animation: walk 0.8s steps(4) infinite, forward 4s linear infinite;
+    }
+
+    .slidecontainer {
+        width: 100%;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 25px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #04AA6D;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #04AA6D;
+        cursor: pointer;
     }
 
     @keyframes walk {
-    0% {
-        background-position: 0px;
-    }
-    100% {
-        background-position: 440px;
-    }
+        0% {
+            background-position: 0px;
+        }
+
+        100% {
+            background-position: 440px;
+        }
     }
 
     @keyframes forward {
-    0% {
-        transform: translateX(-100px);
-    }
-    100% {
-        transform: translateX(1390px);
-    }
+        0% {
+            transform: translateX(-100px);
+        }
+
+        100% {
+            transform: translateX(1390px);
+        }
     }
 </style>
