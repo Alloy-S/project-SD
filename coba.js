@@ -247,13 +247,13 @@ function movePlayer() {
   $(id).css("background", "red");
   
   if(from - next == 1) {
-    console.log('animasi kiri');
+    document.getElementById('character').className = 'robber-left';
   } else if (from - next == -1) {
-    console.log('animasi kanan');
+    document.getElementById('character').className = 'robber-right';
   } else if (from - next == 9) {
-    console.log('animasi atas');
+    document.getElementById('character').className = 'robber-up';
   } else if (from - next == -9) {
-    console.log('animasi bawah');
+    document.getElementById('character').className = 'robber-down';
   }
 
   $(".character").css("position", "absolute");

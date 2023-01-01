@@ -146,8 +146,29 @@ button:disabled {
   cursor: pointer;
 }
 
-.robber {
+.robber-right {
   background: url(char_kanan.png);
+  width: 107.5px;
+  height: 140px;
+  animation: walk 1s steps(4) infinite, forward 8s linear infinite;
+}
+
+.robber-left {
+  background: url(char_kiri.png);
+  width: 107.5px;
+  height: 140px;
+  animation: walk 1s steps(4) infinite, forward 8s linear infinite;
+}
+
+.robber-down {
+  background: url(char_maju.png);
+  width: 107.5px;
+  height: 140px;
+  animation: walk 1s steps(4) infinite, forward 8s linear infinite;
+}
+
+.robber-up {
+  background: url(char_mundur.png);
   width: 107.5px;
   height: 140px;
   animation: walk 1s steps(4) infinite, forward 8s linear infinite;
