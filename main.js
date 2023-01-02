@@ -4,6 +4,7 @@ let end = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 26, 35, 44, 53, 62, 71, 80, 79, 78, 77, 76, 75,
   74, 73, 73, 72, 63, 54, 45, 36, 27, 18, 9,
 ];
+let wall;
 let V = 8;
 
 $(".green").click(function () {
@@ -48,7 +49,7 @@ function printSolution(dist, path, src, dest, V) {
   if (check == false && count == end.length-1) {
       var delayInMilliseconds = 500; //0.5 second
         setTimeout(function () {
-          newGame(9, 5);
+          newGame(9, wall);
         }, delayInMilliseconds);
       return;
   }
@@ -145,7 +146,9 @@ function dijkstra(graph, src) {
 //   return Math.floor(Math.random() * max);
 // }
 
-function newGame(max, wall) {
+function newGame(max, setWall) {
+
+  wall = setWall;
   $(".green").css("background", "#ccff00");
   $("#40").css("background", "red");
   document.getElementById('40').style.backgroundImage="url('idle.png')";
@@ -245,29 +248,30 @@ function movePlayer() {
   let next = hasil[1];
   id = "#" + position;
   $(id).css("background", "red");
+  // $(id).append("<img id='character' class='character'>");
   
-  if(from - next == 1) {
-    document.getElementById('character').className = 'robber-left';
-  } else if (from - next == -1) {
-    document.getElementById('character').className = 'robber-right';
-  } else if (from - next == 9) {
-    document.getElementById('character').className = 'robber-up';
-  } else if (from - next == -9) {
-    document.getElementById('character').className = 'robber-down';
-  }
+  // if(from - next == 1) {
+  //   document.getElementById('character').className = 'robber-left';
+  // } else if (from - next == -1) {
+  //   document.getElementById('character').className = 'robber-right';
+  // } else if (from - next == 9) {
+  //   document.getElementById('character').className = 'robber-up';
+  // } else if (from - next == -9) {
+  //   document.getElementById('character').className = 'robber-down';
+  // }
 
-  $(".character").css("position", "absolute");
-  document.getElementById(position).style.backgroundImage="url('idle.png')";
-  document.getElementById(position).style.backgroundSize="58px 62px";
-  document.getElementById(position).style.backgroundPosition="center";
-  document.getElementById(position).style.backgroundRepeat= "no-repeat";
+  // $(".character").css("position", "absolute");
+  // document.getElementById(position).style.backgroundImage="url('idle.png')";
+  // document.getElementById(position).style.backgroundSize="58px 62px";
+  // document.getElementById(position).style.backgroundPosition="center";
+  // document.getElementById(position).style.backgroundRepeat= "no-repeat";
   // document.getElementById(position).style.textIndent="-999px";
   // document.getElementById(position).style.fontSize="0";
   console.log(graphMatrix);
   var delayInMilliseconds = 500; //0.5 second
   if (end.includes(position)) {
     setTimeout(function () {
-      newGame(9, 5);
+      newGame(9, wall);
     }, delayInMilliseconds);
   }
 }
@@ -278,7 +282,7 @@ function movePlayer() {
 
 // let matrix = newGame(9)
 // let position = 8;
-newGame(9, 5);
+newGame(9,5);
 console.log(graphMatrix);
 // let hasil = dijkstra(graphMatrix, position);
 // position = hasil[1];

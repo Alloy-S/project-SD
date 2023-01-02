@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Press Start 2P" rel="stylesheet">
+
+</head>
+
+<body>
+  <audio id="myaudio" controls autoplay loop hidden>
+    <source src="bgm.mp3" type="audio/mpeg">
+  </audio>
+  <div class="setting">
+    <button id="myBtn" class="btn-setting"><i class="fa-solid fa-gear fa-xl"></i></button>
+  </div>
+  <!-- <button id="myBtn"><i class="fa-solid fa-bars fa-lg"></i></button> -->
+  <div class="container">
+
+    <div class="info">
+      <div class="position">
+
+      </div>
+      <div class="path">
+
+      </div>
+      <table style="border: 1px solid black;">
+        <thead>
+          <tr>
+            <th>vertex</th>
+            <th>distance</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="square">
+      <button class="green" id="0">0</button>
+      <button class="green" id="1">1</button>
+      <button class="green" id="2">2</button>
+      <button class="green" id="3">3</button>
+      <button class="green" id="4">4</button>
+      <button class="green" id="5">5</button>
+      <button class="green" id="6">6</button>
+      <button class="green" id="7">7</button>
+      <button class="green" id="8">8</button>
+
+      <button class="green" id="9">9</button>
+      <button class="green" id="10">10</button>
+      <button class="green" id="11">11</button>
+      <button class="green" id="12">12</button>
+      <button class="green" id="13">13</button>
+      <button class="green" id="14">14</button>
+      <button class="green" id="15">15</button>
+      <button class="green" id="16">16</button>
+      <button class="green" id="17">17</button>
+
+      <button class="green" id="18">18</button>
+      <button class="green" id="19">19</button>
+      <button class="green" id="20">20</button>
+      <button class="green" id="21">21</button>
+      <button class="green" id="22">22</button>
+      <button class="green" id="23">23</button>
+      <button class="green" id="24">24</button>
+      <button class="green" id="25">25</button>
+      <button class="green" id="26">26</button>
+
+      <button class="green" id="27">27</button>
+      <button class="green" id="28">28</button>
+      <button class="green" id="29">29</button>
+      <button class="green" id="30">30</button>
+      <button class="green" id="31">31</button>
+      <button class="green" id="32">32</button>
+      <button class="green" id="33">33</button>
+      <button class="green" id="34">34</button>
+      <button class="green" id="35">35</button>
+
+      <button class="green" id="36">36</button>
+      <button class="green" id="37">37</button>
+      <button class="green" id="38">38</button>
+      <button class="green" id="39">39</button>
+      <button class="green" id="40">40</button>
+      <!-- <img src="idle.png" style="height: 9%; position: absolute; left: 52.1%; top: 45%;"> -->
+      <button class="green" id="41">41</button>
+      <button class="green" id="42">42</button>
+      <button class="green" id="43">43</button>
+      <button class="green" id="44">44</button>
+
+      <button class="green" id="45">45</button>
+      <button class="green" id="46">46</button>
+      <button class="green" id="47">47</button>
+      <button class="green" id="48">48</button>
+      <button class="green" id="49">49</button>
+      <button class="green" id="50">50</button>
+      <button class="green" id="51">51</button>
+      <button class="green" id="52">52</button>
+      <button class="green" id="53">53</button>
+
+      <button class="green" id="54">54</button>
+      <button class="green" id="55">55</button>
+      <button class="green" id="56">56</button>
+      <button class="green" id="57">57</button>
+      <button class="green" id="58">58</button>
+      <button class="green" id="59">59</button>
+      <button class="green" id="60">60</button>
+      <button class="green" id="61">61</button>
+      <button class="green" id="62">62</button>
+
+      <button class="green" id="63">63</button>
+      <button class="green" id="64">64</button>
+      <button class="green" id="65">65</button>
+      <button class="green" id="66">66</button>
+      <button class="green" id="67">67</button>
+      <button class="green" id="68">68</button>
+      <button class="green" id="69">69</button>
+      <button class="green" id="70">70</button>
+      <button class="green" id="71">71</button>
+
+      <button class="green" id="72">72</button>
+      <button class="green" id="73">73</button>
+      <button class="green" id="74">74</button>
+      <button class="green" id="75">75</button>
+      <button class="green" id="76">76</button>
+      <button class="green" id="77">77</button>
+      <button class="green" id="78">78</button>
+      <button class="green" id="79">79</button>
+      <button class="green" id="80">80</button>
+    </div>
+  </div>
+
+  <!-- <div class="robber-left robber-right robber-down robber-up" style="margin-top: 30px;"></div> -->
+
+  <div id="myModal" class="modal" active="false">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="menu">
+
+        <button class="btn-difficulty" onclick="newGame(9,5)">Easy</button>
+        <button class="btn-difficulty" onclick="newGame(9,3)">Medium</button>
+        <button class="btn-difficulty" onclick="newGame(9,0)">Hard</button>
+
+        <div class="volume">
+          <h2 class="title">Volume Control</h2>
+          <input type="range" min="0" max="100" value="10" class="slider" id="myRange">
+          <button id="mute-btn" mute="false" class="btn-mute">Mute</button>
+        </div>
+        <a class="quit" href="index.html">
+          <button class="btn-quit">Quit</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    const keyboard = document.querySelector("body");
+    var audio = document.getElementById("myaudio");
+
+    var btnMute = $("#mute-btn");
+    var volume = $("#myRange");
+    audio.volume = 0.1;
+
+    keyboard.addEventListener("keydown", e => {
+      // console.log(e);
+      if (e.keyCode == 27) {
+        if ($("#myModal").attr("active") == "false") {
+          modal.style.display = "block";
+          $("#myModal").attr("active", "true");
+        } else {
+          modal.style.display = "none";
+          $("#myModal").attr("active", "false");
+        }
+      }
+    })
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    volume.on("input", function () {
+      // console.log(volume.val());
+      audio.volume = volume.val() / 100;
+    });
+
+    btnMute.click(function () {
+      if (btnMute.attr("mute") == "false") {
+        audio.muted = true;
+        btnMute.attr("mute", "true");
+        btnMute.html("Unmuted");
+      } else {
+        audio.muted = false;
+        btnMute.attr("mute", "false");
+        btnMute.html("Mute");
+      }
+    });
+  </script>
+</body>
+
+</html>
