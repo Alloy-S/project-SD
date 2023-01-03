@@ -22,7 +22,6 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P';
-    /* font-family:'Franklin Gothic Medium'; */
     font-size: 50px;
     background-color: rgb(237, 220, 136);
     width: 200px;
@@ -108,7 +107,7 @@ body {
 }
 
 .robber {
-    background: url(char_kanan.png);
+    background: url(assets/char_kanan.png);
     width: 107.5px;
     height: 140px;
     animation: walk 0.35s steps(4) infinite, forward 4s linear infinite;
