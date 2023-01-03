@@ -260,11 +260,21 @@ function movePlayer() {
   //   document.getElementById('character').className = 'robber-down';
   // }
 
-  // $(".character").css("position", "absolute");
+  $(".character").css("position", "absolute");
+  if(from - next == 1) {
+    document.getElementById(position).style.backgroundImage="url('char_kiri_fix.png')";
+  } else if (from - next == -1) {
+    document.getElementById(position).style.backgroundImage="url('char_kanan_fix.png')";
+  } else if (from - next == 9) {
+    document.getElementById(position).style.backgroundImage="url('char_mundur_fix.png')";
+  } else if (from - next == -9) {
+    document.getElementById(position).style.backgroundImage="url('char_maju_fix.png')";
+  }
+
   // document.getElementById(position).style.backgroundImage="url('idle.png')";
-  // document.getElementById(position).style.backgroundSize="58px 62px";
-  // document.getElementById(position).style.backgroundPosition="center";
-  // document.getElementById(position).style.backgroundRepeat= "no-repeat";
+  document.getElementById(position).style.backgroundSize="58px 62px";
+  document.getElementById(position).style.backgroundPosition="center";
+  document.getElementById(position).style.backgroundRepeat= "no-repeat";
   // document.getElementById(position).style.textIndent="-999px";
   // document.getElementById(position).style.fontSize="0";
   console.log(graphMatrix);
