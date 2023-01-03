@@ -17,6 +17,16 @@ body {
     width: 50%;
 }
 
+.credit{
+    font-family: 'Press Start 2P';
+    font-size: 15px;
+    text-align: center;
+    background-color: rgb(237, 220, 136);
+    margin-bottom: 30px;
+    word-spacing: 2px;
+    line-height: 17px;
+}
+
 .btn-start {
     display: flex;
     justify-content: center;
