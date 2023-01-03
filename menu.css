@@ -115,7 +115,7 @@ body {
 }
 .slider {
     -webkit-appearance: none;
-    width: 100%;
+    width: 70%;
     height: 25px;
     background: #d3d3d3;
     outline: none;

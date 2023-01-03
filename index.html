@@ -141,7 +141,7 @@
             <span class="close">&times;</span>
             <div class="menu">
                 <h2 class="title">Volume Control</h2>
-                <input type="range" min="0" max="100" value="10" class="slider" id="myRange">
+                <input type="range" min="0" max="100" value="25" class="slider" id="myRange">
                 <button id="mute-btn" mute="false" class="btn-mute">Mute</button>
                 <!-- <a  mute="false"><i class="fa-solid fa-music fa-xl"></i></a> -->
             </div>
@@ -151,7 +151,7 @@
 
     <script>
         var audio = document.getElementById("myaudio");
-        audio.volume = 0.3;
+        audio.volume = 0.25;
         // audio.muted = true;
 
         var btnMute = $("#mute-btn");
