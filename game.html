@@ -23,7 +23,7 @@
   <!-- <button id="myBtn"><i class="fa-solid fa-bars fa-lg"></i></button> -->
   <div class="container">
 
-    <div class="info">
+    <!-- <div class="info">
       <div class="position">
 
       </div>
@@ -41,7 +41,7 @@
 
         </tbody>
       </table>
-    </div>
+    </div> -->
     <div class="square">
       <button class="green" id="0">0</button>
       <button class="green" id="1">1</button>
@@ -166,8 +166,12 @@
     <div class="box-font">
     <h1>YOU LOSE</h1></div>
   </div>
+
   <script src="main.js"></script>
   <script>
+    //unutuk menghilangkan nama vertex
+    $(".green").html("");
+    
     var modal = document.getElementById("myModal");
     var btn = document.getElementById("myBtn");
     var span = document.getElementsByClassName("close")[0];
