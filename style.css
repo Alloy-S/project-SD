@@ -1,4 +1,4 @@
-.container {
+.all-container {
   display: flex;
   flex-direction: row;
 }
@@ -284,4 +284,28 @@ button:disabled {
   100% {
     transform: translateX(140px);
   }
+}
+h1{
+  text-align: center;
+}
+.win-lose{
+  font-family:'Press Start 2P';
+  font-size: xx-large;
+  position: fixed;
+  z-index: 1; 
+  top: 40%;
+  height: fit-content;
+  width: 100%;
+  padding: 5vh;
+}
+#win{
+  display: none;
+  color: #04915d;
+  background-color: #ffffff;
+}
+
+#lose{
+  display: none;
+  color: red;
+  background-color: black;
 }

@@ -47,11 +47,17 @@ function printSolution(dist, path, src, dest, V) {
   }
   
   if (check == false && count == end.length-1) {
-      var delayInMilliseconds = 500; //0.5 second
+      setTimeout(function () {
         setTimeout(function () {
-          newGame(9, wall);
-        }, delayInMilliseconds);
-      return;
+          $("#win").css("display", "block");
+          setTimeout(function () {
+            $("#win").css("display", "none");
+          }, 500);
+        }, 500);
+        newGame(9, wall);
+        console.log("kalah123");
+        $("#win").css("display", "block");
+      }, 500);
   }
 
   let finalPath = [];
@@ -234,6 +240,7 @@ function newGame(max, setWall) {
 function movePlayer() {
   let hasil = dijkstra(graphMatrix, position);
 
+  if (hasil != 0) {
   var str;
   for (let i = 0; i < hasil.length; i++) {
     str += hasil[i] + "->";
@@ -248,6 +255,7 @@ function movePlayer() {
   let next = hasil[1];
   id = "#" + position;
   $(id).css("background", "red");
+
   // $(id).append("<img id='character' class='character'>");
   
   // if(from - next == 1) {
@@ -278,13 +286,21 @@ function movePlayer() {
   // document.getElementById(position).style.textIndent="-999px";
   // document.getElementById(position).style.fontSize="0";
   console.log(graphMatrix);
-  var delayInMilliseconds = 500; //0.5 second
   if (end.includes(position)) {
     setTimeout(function () {
+      setTimeout(function () {
+        $("#lose").css("display", "block");
+        setTimeout(function () {
+          $("#lose").css("display", "none");
+        }, 500);
+      }, 500);
       newGame(9, wall);
-    }, delayInMilliseconds);
+      console.log("kalah123");
+      $("#lose").css("display", "block");
+    }, 500);
   }
 }
+};
 
 //   console.log("sebelum delete");
 
