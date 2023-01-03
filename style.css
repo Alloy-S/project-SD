@@ -9,7 +9,7 @@
 }
 
 body{
-  background-image: url("money.webp");
+  background-image: url("assets/money.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -222,7 +222,7 @@ button:disabled {
 
 .robber-right {
   position: relative;
-  background: url(char_kanan.png);
+  background: url(assets/char_kanan.png);
   width: 107.5px;
   height: 140px;
   animation: walk 1s steps(4) infinite, forward 2s linear infinite;
@@ -232,7 +232,7 @@ button:disabled {
 
 .robber-left {
   position: relative;
-  background: url(char_kiri.png);
+  background: url(assets/char_kiri.png);
   width: 107.5px;
   height: 140px;
   animation: walk 1s steps(4) infinite, forward 2s linear infinite;
@@ -242,7 +242,7 @@ button:disabled {
 
 .robber-down {
   position: relative;
-  background: url(char_maju.png);
+  background: url(assets/char_maju.png);
   width: 107.5px;
   height: 140px;
   animation: walk 1s steps(4) infinite, forward 2s linear infinite;
@@ -252,7 +252,7 @@ button:disabled {
 
 .robber-up {
   position: relative;
-  background: url(char_mundur.png);
+  background: url(assets/char_mundur.png);
   width: 107.5px;
   height: 140px;
   animation: walk 1s steps(4) infinite, forward 2s linear infinite;

@@ -151,7 +151,7 @@ function newGame(max, setWall) {
   wall = setWall;
   $(".green").css("background", "#ccff00");
   $("#40").css("background", "red");
-  document.getElementById('40').style.backgroundImage="url('idle.png')";
+  document.getElementById('40').style.backgroundImage="url('assets/idle.png')";
   document.getElementById('40').style.backgroundSize="58px 62px";
   document.getElementById('40').style.backgroundPosition="center";
   document.getElementById('40').style.backgroundRepeat= "no-repeat";
@@ -262,13 +262,13 @@ function movePlayer() {
 
   $(".character").css("position", "absolute");
   if(from - next == 1) {
-    document.getElementById(position).style.backgroundImage="url('char_kiri_fix.png')";
+    document.getElementById(position).style.backgroundImage="url('assets/char_kiri_fix.png')";
   } else if (from - next == -1) {
-    document.getElementById(position).style.backgroundImage="url('char_kanan_fix.png')";
+    document.getElementById(position).style.backgroundImage="url('assets/char_kanan_fix.png')";
   } else if (from - next == 9) {
-    document.getElementById(position).style.backgroundImage="url('char_mundur_fix.png')";
+    document.getElementById(position).style.backgroundImage="url('assets/char_mundur_fix.png')";
   } else if (from - next == -9) {
-    document.getElementById(position).style.backgroundImage="url('char_maju_fix.png')";
+    document.getElementById(position).style.backgroundImage="url('assets/char_maju_fix.png')";
   }
 
   // document.getElementById(position).style.backgroundImage="url('idle.png')";
