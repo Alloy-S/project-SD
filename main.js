@@ -53,7 +53,6 @@ function printSolution(dist, path, dest, V) {
           }, 500);
         }, 500);
         newGame(9, wall);
-        console.log("kalah123");
         $("#win").css("display", "block");
       }, 500);
 
@@ -81,7 +80,6 @@ function getPath(current, path, finalPath) {
   if (current == -1) {
     return;
   }
-  // console.log(finalPath);
   getPath(path[current], path, finalPath);
   finalPath.push(current);
   // document.write(current + "-->");
@@ -160,16 +158,13 @@ function newGame(max, setWall) {
   let count = 0;
   for (let i = 0; i < vertex; i++) {
     if (i + 1 < level + max) {
-      // console.log(i, level);
       if (i + 1 < vertex) {
-        // console.log("edge + 1", i);
         matrix[i][i + 1] = 1;
         matrix[i + 1][i] = 1;
       }
     }
 
     if (i + max < vertex) {
-      // console.log("edge + 9", i);
       matrix[i][i + max] = 1;
       matrix[i + max][i] = 1;
     }
@@ -202,7 +197,7 @@ function newGame(max, setWall) {
 function movePlayer() {
   // menjalan kan algoritma djikstra dan mereturn path paling pendek
   let hasil = dijkstra(graphMatrix, position);
-
+  console.log(hasil);
   if (hasil != 0) {
   // var str;
   // for (let i = 0; i < hasil.length; i++) {
@@ -233,8 +228,6 @@ function movePlayer() {
   document.getElementById(position).style.backgroundSize = "58px 62px";
   document.getElementById(position).style.backgroundPosition = "center";
   document.getElementById(position).style.backgroundRepeat = "no-repeat";
- 
-  // console.log(graphMatrix);
 
   //mengecek apakah thief berada di pinggir map
   if (end.includes(position)) {
@@ -246,7 +239,6 @@ function movePlayer() {
         }, 500);
       }, 500);
       newGame(9, wall);
-      console.log("kalah123");
       $("#lose").css("display", "block");
     }, 500);
   }
