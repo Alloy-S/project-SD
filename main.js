@@ -45,13 +45,13 @@ function printSolution(dist, path, src, dest, V) {
       $("tbody").append("<tr><td>" + i + "</td><td>" + dist[i] + "</td></tr>");
     }
   }
-  
-  if (check == false && count == end.length-1) {
-      var delayInMilliseconds = 500; //0.5 second
-        setTimeout(function () {
-          newGame(9, wall);
-        }, delayInMilliseconds);
-      return;
+
+  if (check == false && count == end.length - 1) {
+    var delayInMilliseconds = 500; //0.5 second
+    setTimeout(function () {
+      newGame(9, wall);
+    }, delayInMilliseconds);
+    return;
   }
 
   let finalPath = [];
@@ -60,7 +60,7 @@ function printSolution(dist, path, src, dest, V) {
     if (i == dest) {
       // document.write("distance to " + i + ":" + dist[i] + "<br>");
       // document.write("path: ");
-    
+
       printPath(i, path, finalPath);
 
       // document.write("<br>");
@@ -93,7 +93,7 @@ function dijkstra(graph, src) {
   let dist = new Array(V);
   let explore = new Array(V);
   let path = new Array(V);
-  
+
   for (let i = 0; i < V; i++) {
     dist[i] = Number.MAX_VALUE;
     explore[i] = false;
@@ -103,22 +103,17 @@ function dijkstra(graph, src) {
   path[src] = -1;
   dist[src] = 0;
 
-  
+
   for (let count = 0; count < V - 1; count++) {
-    
+
     let u = minDistance(dist, explore, V);
 
-    
+
     explore[u] = true;
 
-  
+
     for (let v = 0; v < V; v++) {
-      if (
-        !explore[v] &&
-        graph[u][v] != 0 &&
-        dist[u] != Number.MAX_VALUE &&
-        dist[u] + graph[u][v] < dist[v]
-      ) {
+      if (!explore[v] && graph[u][v] != 0 && dist[u] != Number.MAX_VALUE && dist[u] + graph[u][v] < dist[v]) {
         dist[v] = dist[u] + graph[u][v];
         path[v] = u;
       }
@@ -151,10 +146,10 @@ function newGame(max, setWall) {
   wall = setWall;
   $(".green").css("background", "#ccff00");
   $("#40").css("background", "red");
-  document.getElementById('40').style.backgroundImage="url('assets/idle.png')";
-  document.getElementById('40').style.backgroundSize="58px 62px";
-  document.getElementById('40').style.backgroundPosition="center";
-  document.getElementById('40').style.backgroundRepeat= "no-repeat";
+  document.getElementById('40').style.backgroundImage = "url('assets/idle.png')";
+  document.getElementById('40').style.backgroundSize = "58px 62px";
+  document.getElementById('40').style.backgroundPosition = "center";
+  document.getElementById('40').style.backgroundRepeat = "no-repeat";
   $(".green").prop("disabled", false);
   let vertex = Math.pow(max, 2);
   //   let max = 4;
@@ -249,7 +244,7 @@ function movePlayer() {
   id = "#" + position;
   $(id).css("background", "red");
   // $(id).append("<img id='character' class='character'>");
-  
+
   // if(from - next == 1) {
   //   document.getElementById('character').className = 'robber-left';
   // } else if (from - next == -1) {
@@ -261,20 +256,20 @@ function movePlayer() {
   // }
 
   $(".character").css("position", "absolute");
-  if(from - next == 1) {
-    document.getElementById(position).style.backgroundImage="url('assets/char_kiri_fix.png')";
+  if (from - next == 1) {
+    document.getElementById(position).style.backgroundImage = "url('assets/char_kiri_fix.png')";
   } else if (from - next == -1) {
-    document.getElementById(position).style.backgroundImage="url('assets/char_kanan_fix.png')";
+    document.getElementById(position).style.backgroundImage = "url('assets/char_kanan_fix.png')";
   } else if (from - next == 9) {
-    document.getElementById(position).style.backgroundImage="url('assets/char_mundur_fix.png')";
+    document.getElementById(position).style.backgroundImage = "url('assets/char_mundur_fix.png')";
   } else if (from - next == -9) {
-    document.getElementById(position).style.backgroundImage="url('assets/char_maju_fix.png')";
+    document.getElementById(position).style.backgroundImage = "url('assets/char_maju_fix.png')";
   }
 
   // document.getElementById(position).style.backgroundImage="url('idle.png')";
-  document.getElementById(position).style.backgroundSize="58px 62px";
-  document.getElementById(position).style.backgroundPosition="center";
-  document.getElementById(position).style.backgroundRepeat= "no-repeat";
+  document.getElementById(position).style.backgroundSize = "58px 62px";
+  document.getElementById(position).style.backgroundPosition = "center";
+  document.getElementById(position).style.backgroundRepeat = "no-repeat";
   // document.getElementById(position).style.textIndent="-999px";
   // document.getElementById(position).style.fontSize="0";
   console.log(graphMatrix);
@@ -292,7 +287,7 @@ function movePlayer() {
 
 // let matrix = newGame(9)
 // let position = 8;
-newGame(9,5);
+newGame(9, 5);
 console.log(graphMatrix);
 // let hasil = dijkstra(graphMatrix, position);
 // position = hasil[1];
