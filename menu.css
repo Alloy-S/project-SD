@@ -169,6 +169,6 @@ body {
     }
 
     100% {
-        transform: translateX(1800px);
+        transform: translateX(1400px);
     }
 }

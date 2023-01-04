@@ -30,7 +30,7 @@ function minDistance(dist, explore, V) {
   return min_index;
 }
 
-function printSolution(dist, path, dest, V) {
+function getSolution(dist, path, dest, V) {
   // $("tbody").html("");
   var count = 0;
   for (let i = 0; i < V; i++) {
@@ -46,14 +46,15 @@ function printSolution(dist, path, dest, V) {
   // pengecekan untuk menang
   if (count == end.length-1) {
       setTimeout(function () {
-        setTimeout(function () {
-          $("#win").css("display", "block");
-          setTimeout(function () {
-            $("#win").css("display", "none");
-          }, 500);
-        }, 500);
+        // setTimeout(function () {
+          // $("#win").css("display", "block");
+          
+        // }, 500);
         newGame(9, wall);
         $("#win").css("display", "block");
+        setTimeout(function () {
+          $("#win").css("display", "none");
+        }, 1000);
       }, 500);
 
       return 0;
@@ -128,7 +129,7 @@ function dijkstra(graph, src) {
     }
   }
 
-  return printSolution(dist, path, index, V);
+  return getSolution(dist, path, index, V);
 }
 
 function newGame(max, setWall) {
@@ -232,14 +233,14 @@ function movePlayer() {
   //mengecek apakah thief berada di pinggir map
   if (end.includes(position)) {
     setTimeout(function () {
-      setTimeout(function () {
-        $("#lose").css("display", "block");
-        setTimeout(function () {
-          $("#lose").css("display", "none");
-        }, 500);
-      }, 500);
+      // setTimeout(function () {
+        // $("#lose").css("display", "block");
+      // }, 500);
       newGame(9, wall);
       $("#lose").css("display", "block");
+      setTimeout(function () {
+        $("#lose").css("display", "none");
+      }, 1000);
     }, 500);
   }
 }
